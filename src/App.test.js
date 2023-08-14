@@ -1,8 +1,5 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import App from './App';
-
-describe("react start app", () => {
-  test('1. h1 title should be String counter', () => {
+describe("Initial Title Test", () => {
+  test('1. Should display "String counter" as the initial h1 title', () => {
     render(<App />);
     const title = screen.getByTestId('title');
     expect(title).toBeTruthy();
@@ -10,8 +7,8 @@ describe("react start app", () => {
   });
 });
 
-describe("add three inputs", () => {
-  test('2. page have a three input', () => {
+describe("Input Section Test", () => {
+  test('2. Should have three input fields on the page', () => {
     render(<App />);
     const inputs = screen.getByTestId('inputs');
     expect(inputs).toBeTruthy();
@@ -19,7 +16,7 @@ describe("add three inputs", () => {
   });
 });
 
-describe("react hooks", () => {
+describe("Input Value Manipulation Test", () => {
   beforeEach(() => {
     const app = render(<App />);
     const inp1 = app.container.querySelector('[name="inp1"]');
@@ -30,16 +27,15 @@ describe("react hooks", () => {
     fireEvent.change(inp3, {'target': {'value': 'Lazarev!'}});
   });
 
-  test('3. fullstring must be Hi Simon Lazarev!', () => {
+  test('3. Should concatenate inputs to form the full string "Hi Simon Lazarev!"', () => {
     const fullstring = screen.getByTestId('fullstring');
     expect(fullstring).toBeTruthy();
     expect(fullstring).toHaveTextContent('Hi Simon Lazarev!');
   });
 
-  test('4. fibonacci must be count correctly', () => {
+  test('4. Should correctly calculate and display the Fibonacci number 1597', () => {
     const fibonacci = screen.getByTestId('fibonacci');
     expect(fibonacci).toBeTruthy();
     expect(fibonacci).toHaveTextContent('1597');
   });
-
 });
